@@ -16,6 +16,7 @@ class AuthController extends AppController
       'error' => $this->flashError]);
   }
 
+
   public function register(Request $request) { 
     $user = new User();
     $user->setUsername($request->params['username']);

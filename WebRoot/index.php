@@ -7,6 +7,5 @@ require_once '../WebFramework/AutoLoader.php';
 
 use WebFramework\Router;
 use WebFramework\Request;
-
-Router::load('../config/routes.php')
-  ->dispatch(new Request());
+// echo "yo <br>";
+Router::load('../config/routes.php')->dispatch(new Request());
