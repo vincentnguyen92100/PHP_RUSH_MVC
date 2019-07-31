@@ -19,6 +19,7 @@ class AppController {
 
   public function __construct()
   {
+    // echo "BUILDING CLIPS<br>";
     $loader = new Twig_Loader_Filesystem("../App/Views");
     $twig = new Twig_Environment($loader, []);
     $this->twig = $twig;

@@ -1,0 +1,11 @@
+{# errors/404.html.twig #} 
+
+{% extends 'base.html.twig' %}
+
+{% block body %} {{ error.get() | raw }}
+
+<div class="container">
+    <p>Error 404 (test)</p>
+</div>
+
+{% endblock %}

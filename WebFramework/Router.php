@@ -21,7 +21,6 @@ class Router {
   public static function load(string $file) {
     $router = new static();
     require $file;
-
     return $router;
   }
 
@@ -34,10 +33,12 @@ class Router {
    * @param function $handler - Function used to handle incoming requests on the route.
    */
   public function use(string $requestType, string $route, AppController $controller, string $handler) {
+    // echo $requestType . "<br>";
     $this->routes[$requestType][$route] = [
       'controller' => $controller,
       'handler' => $handler
     ];
+    // echo "FIN USE <br>";
   }
 
   /**
@@ -65,15 +66,18 @@ class Router {
    *   of the incomings HTTP requests.
    */
   public function dispatch(Request $request) {
-    if (array_key_exists($request->method, $this->routes)
+    // echo "DISPATCH <br>";
+    // var_dump($request);
+      if (array_key_exists($request->method, $this->routes)
         && array_key_exists($request->route, $this->routes[$request->method])) {
       $route_handler = $this->routes[$request->method][$request->route];
       $this->handle($request, $route_handler['controller'], $route_handler['handler']);
     } else {
-      // TODO: Implement a 404 view and render it with TWIG when the
-      // requested route is invalid
-      echo '<h1>Page not found</h1>';
-    }
+      if (http_response_code(404)){
+        header('Location: /PHP_Rush_MVC/errors/404');
+      } 
+
   }
 
+}
 }
