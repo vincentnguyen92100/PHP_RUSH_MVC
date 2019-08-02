@@ -20,16 +20,6 @@ class AuthController extends AppController
 
   public function register(Request $request) { 
     $user = new User();
-    $pdo = new AppController();
-
-    echo "pdo <br>";
-    var_dump($pdo);
-
-    $sql = "INSERT INTO users (username, email, password) VALUES ('username', 'email', 'password')";
-    $user = $pdo->prepare($sql);
-    
-    echo "<br><br>user<br>";
-    var_dump($user);
 
     $user->setUsername($request->params['username']);
     $user->setEmail($request->params['email']);
@@ -45,6 +35,18 @@ class AuthController extends AppController
       $this->redirect('/' . $request->base . 'auth/register', '302');
       return;
     }
+
+    $query = $this->orm->getDb()->prepare($user->addUser());
+    $array = [
+      'username' => $request->params['username'],
+      'email' => $request->params['email'],
+      'password' => password_hash($request->params['password'], PASSWORD_DEFAULT)
+    ];
+
+    $query->execute($array);
+
+    // header('location:/PHP_Rush_MVC/auth/login');
+    var_dump($user);
     die();
   }
 
@@ -70,11 +72,4 @@ class AuthController extends AppController
       $this->redirect('/' . $request->base . 'auth/login', '302');
       return;
     }
-
-    echo "function login";
-
-    var_dump($user);
-    die();
   }
-
-}

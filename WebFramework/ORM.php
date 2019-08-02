@@ -59,6 +59,9 @@ class ORM {
     }
   }
 
+  public function getDb(){
+    return $this->db;
+  }
   /**
    * Make a model instance managed by the ORM.
    *

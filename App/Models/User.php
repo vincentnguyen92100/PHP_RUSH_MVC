@@ -96,4 +96,8 @@ class User
 
     return $err;
   }
+
+  public function addUser(){
+    return 'INSERT INTO users(username, email, password, created_at, updated_at) VALUES (:username, :email, :password, now(),now())';
+  }
 }
