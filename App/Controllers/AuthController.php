@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Controllers;
 
 use WebFramework\AppController;
@@ -19,11 +20,24 @@ class AuthController extends AppController
 
   public function register(Request $request) { 
     $user = new User();
-  
+    $pdo = new AppController();
+
+    echo "pdo <br>";
+    var_dump($pdo);
+
+    $sql = "INSERT INTO users (username, email, password) VALUES ('username', 'email', 'password')";
+    $user = $pdo->prepare($sql);
+    
+    echo "<br><br>user<br>";
+    var_dump($user);
+
     $user->setUsername($request->params['username']);
     $user->setEmail($request->params['email']);
     $user->setPassword($request->params['password']);
 
+    $user->execute();
+
+    var_dump($user);
     try {
       $user->validate();
     } catch (\Exception $e) {
@@ -31,12 +45,11 @@ class AuthController extends AppController
       $this->redirect('/' . $request->base . 'auth/register', '302');
       return;
     }
-
-    echo "function register";
-
-    var_dump($user);
     die();
   }
+
+
+
   public function login_view(Request $request)
   {
     return $this->render('auth/login.html.twig', ['base' => $request->base,
@@ -47,7 +60,6 @@ class AuthController extends AppController
   public function login(Request $request) { 
     $user = new User();
   
-    $user->setUsername($request->params['username']);
     $user->setEmail($request->params['email']);
     $user->setPassword($request->params['password']);
 
@@ -59,7 +71,7 @@ class AuthController extends AppController
       return;
     }
 
-    echo "function register";
+    echo "function login";
 
     var_dump($user);
     die();

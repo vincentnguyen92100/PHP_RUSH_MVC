@@ -19,7 +19,7 @@ class ORM {
   
   }
 
-  private function getdb()
+  public function getdb()
   {
     return $this->db;
   }
