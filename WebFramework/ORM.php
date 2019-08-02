@@ -1,5 +1,6 @@
 <?php
 
+
 namespace WebFramework;
 
 use \PDO;
@@ -15,8 +16,13 @@ class ORM {
    */
   private function __construct()
   {
+  
   }
 
+  private function getdb()
+  {
+    return $this->db;
+  }
   /**
    * Retrieve the static instance of the ORM.
    *
@@ -60,6 +66,8 @@ class ORM {
    */
   public function persist($object)
   {
+
+    // EntityManager.persist($object)
     // TODO: Implement this function
   }
 
@@ -68,6 +76,7 @@ class ORM {
    */
   public function flush()
   {
+
     // TODO: Implement this function
   }
 
