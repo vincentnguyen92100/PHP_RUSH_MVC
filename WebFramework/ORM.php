@@ -18,11 +18,6 @@ class ORM {
   {
   
   }
-
-  public function getdb()
-  {
-    return $this->db;
-  }
   /**
    * Retrieve the static instance of the ORM.
    *
