@@ -52,7 +52,13 @@ class User
 
     return $this;
   }
+  public function add(){
 
+  $sql = "INSERT INTO users (username, email, password) VALUES (username, email, password)";
+  $orm=ORM::getinstance();
+  $orm->getdb();
+
+  }
   public function getPassword(): ?string
   {
     return $this->password;

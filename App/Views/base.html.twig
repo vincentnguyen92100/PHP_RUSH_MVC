@@ -8,6 +8,41 @@
       <title>MVC Application</title>
   </head>
   <body>
-    {% block body %}{% endblock %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand" href="#"> MVC RUSH</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">HOME
+                <span class="sr-only">(current)</span>
+              </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../auth/login">LOGIN</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../auth/register">REGISTER</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">CONTACT</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4" style="background-color:lavender;">LEFT MENU</div>
+    <div class="col-sm-8" style="background-color:lavenderblush;">{% block body %}{% endblock %}</div>
+  </div>
+</div>
+
+
+    
   </body>
 </html>
