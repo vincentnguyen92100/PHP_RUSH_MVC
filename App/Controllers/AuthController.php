@@ -30,7 +30,21 @@ class AuthController extends AppController
       $this->redirect('/' . $request->base . 'auth/register', '302');
       return;
     }
+    var_dump($user->addUser());
+    echo "<br>";
+    var_dump($this->orm->getDb());
+    echo "<br>";
 
+    $query = $this->orm->getDb()->prepare($user->addUser());
+    $array = [
+      'username' => $request->params['username'],
+      'email' => $request->params['email'],
+      'password' => password_hash($request->params['password'], PASSWORD_DEFAULT)
+    ];
+
+    $query->execute($array);
+
+    // header('location:/PHP_Rush_MVC/auth/login');
     var_dump($user);
     // TODO: Store user in the database with the ORM (this->orm).
     die();
